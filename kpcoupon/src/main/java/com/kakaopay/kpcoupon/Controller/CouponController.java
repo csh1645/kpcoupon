@@ -1,5 +1,6 @@
 package com.kakaopay.kpcoupon.Controller;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,12 @@ public class CouponController {
 		this.jwtUtil = jwtUtil;
 	}
 	
-	//쿠폰생성
+	/**
+     * N개의 쿠폰 생성
+     * 
+     * @param CreateCounponQty
+     * @return Coupon List
+     */
 	@PostMapping("/create")
 	public List<Coupon> createCoupon(
 			@RequestBody CreateCouponQty createCouponQty){
@@ -38,16 +44,24 @@ public class CouponController {
 		
 	}
 	
-		
-	//쿠폰지급
+	/**
+     * 생성된 쿠폰 지급
+     * 
+     * @param 
+     * @return couponId
+     */	
 	@GetMapping("/couponpProvide")
 	public String couponpProvide() {
 		return couponService.couponpProvide();
 		
 	}
 	
-	
-	//지급된 쿠폰 리스트
+	/**
+     * 지급된 쿠폰 리스트
+     * 
+     * @param provideYn
+     * @return coupon List
+     */
 	@GetMapping("/provideYnCheckCoupon/{provideYn}")
 	public List<Coupon> provideYnCheckCoupon(
 			@PathVariable String provideYn) {
@@ -55,7 +69,12 @@ public class CouponController {
 		
 	}
 	
-	//지급된 쿠폰 사용
+	/**
+     * 지급된 쿠폰 사용
+     * 
+     * @param Coupon
+     * @return msg
+     */
 	@PutMapping("/useCoupon")
 	public String useCoupon(
 			@RequestBody  Coupon coupon) {
@@ -63,7 +82,12 @@ public class CouponController {
 		
 	}
 	
-	//지급된 쿠폰 사용 취소
+	/**
+     * 지급된 쿠폰 사용 취소
+     * 
+     * @param Coupon
+     * @return msg
+     */
 	@PutMapping("/useCancleCoupon")
 	public String useCancleCoupon(
 			@RequestBody  Coupon coupon) {
@@ -71,7 +95,12 @@ public class CouponController {
 		
 	}
 	
-	//지급된 쿠폰 리스트
+	/**
+     * 오늘 만료된 쿠폰 리스트
+     * 
+     * @param provideYn
+     * @return coupon List
+     */
 	@GetMapping("/expirationCoupon")
 	public List<Coupon> expirationCoupon() {
 		return couponService.expirationCoupon();

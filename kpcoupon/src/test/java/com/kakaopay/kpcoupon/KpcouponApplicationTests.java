@@ -69,8 +69,6 @@ class KpcouponApplicationTests {
 		setCoupon.setCouponProvide("N");
 		setCoupon.setStartDate("20200505");
 		setCoupon.setEndDate("20200508");
-		setCoupon.setRegEmpNo("admin");
-		setCoupon.setRegDate(new Timestamp(System.currentTimeMillis()));
 		
 		couponRepo.save(setCoupon);
 		
@@ -83,7 +81,7 @@ class KpcouponApplicationTests {
 	public void couponpProvide() {
 		tempCouponCreate();
 		
-		Coupon couponpProvide = couponRepo.findTop1ByCouponProvideOrderByRegDateAsc("N").get(0);
+		Coupon couponpProvide = couponRepo.findTop1ByCouponProvideOrderByStartDateAsc("N").get(0);
 		
 		Assert.assertNotNull(couponpProvide);
 	}
@@ -96,8 +94,6 @@ class KpcouponApplicationTests {
 		setCoupon.setCouponProvide("N");
 		setCoupon.setStartDate("20200505");
 		setCoupon.setEndDate("20200508");
-		setCoupon.setRegEmpNo("admin");
-		setCoupon.setRegDate(new Timestamp(System.currentTimeMillis()));
 		
 		couponRepo.save(setCoupon);
 		

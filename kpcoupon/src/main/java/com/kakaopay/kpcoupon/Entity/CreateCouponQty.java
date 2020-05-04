@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CreateCouponQty {
 	private Long couponQty;
+	private String endDate;
 
 	@Builder
-	public CreateCouponQty(Long couponQty) {
-		this.couponQty = couponQty;	}
+	public CreateCouponQty(Long couponQty, String endDate) {
+		this.couponQty = couponQty;
+		this.endDate = endDate;
+	}
 }

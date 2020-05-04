@@ -34,12 +34,11 @@ public class CouponLogic implements CouponService {
 	    {'1','2','3','4','5','6','7','8','9','0','A','B','C','D','E','F',
 	     'G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V',
 	     'W','X','Y','Z'};
-
-	//N개 쿠폰생성
+	
 	@Override
 	public List<Coupon> createCoupon(Long qty) {
 		
-		//쿠폰 시작-만료일자
+		//쿠폰 시작-만료일자 생성
 		List<String> expDate = expirationDate();
 		
 		List<Coupon> saveCoupons = new ArrayList<Coupon>();
@@ -51,6 +50,7 @@ public class CouponLogic implements CouponService {
 		while (createQty < qty) {
 			
 			StringBuffer buf = new StringBuffer(30);
+			//쿠폰 생성
 			for (int i= 15; i > 0; i--) {
 				
 				switch (i) {
@@ -81,18 +81,18 @@ public class CouponLogic implements CouponService {
 				setCoupon.setCouponProvide("N");
 				setCoupon.setStartDate(expDate.get(0));
 				setCoupon.setEndDate(expDate.get(1));
-				setCoupon.setRegEmpNo("admin");
-				setCoupon.setRegDate(new Timestamp(System.currentTimeMillis()));
+				
+				couponStore.save(setCoupon);
 				
 				saveCoupons.add(setCoupon);
 			}
 			
 		}
 		
-		return couponStore.saveAllCoupon(saveCoupons);
+		//return couponStore.saveAllCoupon(saveCoupons);
+		return saveCoupons;
 	}
 
-	//쿠폰지급
 	@Override
 	public String couponpProvide() {
 		
@@ -107,14 +107,12 @@ public class CouponLogic implements CouponService {
 		return couponId;
 	}
 
-	//지급여부 확인
 	@Override
 	public List<Coupon> provideYnCheckCoupon(String provideYn) {
 				
 		return couponStore.provideYnCheckCoupon(provideYn);
 	}
 	
-	//쿠폰 사용
 	@Override
 	public String useCoupon(String couponId) {
 		
@@ -141,8 +139,7 @@ public class CouponLogic implements CouponService {
 				
 
 	}
-	
-	//쿠폰 사용 취소
+
 	@Override
 	public String useCancleCoupon(String couponId) {
 		
@@ -169,7 +166,6 @@ public class CouponLogic implements CouponService {
 		return returnMsg;
 	}
 	
-	//만료일(굼일)기준 조회
 	@Override
 	public List<Coupon> expirationCoupon() {
 				

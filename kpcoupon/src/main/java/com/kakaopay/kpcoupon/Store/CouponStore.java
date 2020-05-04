@@ -19,10 +19,10 @@ public class CouponStore {
 	}
 	
 	//수정 - 추가
-	public Coupon save(Coupon coupons){
+	public Coupon save(Coupon coupon){
 		Coupon returnCoupon = new Coupon();
 		
-		returnCoupon = couponRepository.save(coupons);
+		returnCoupon = couponRepository.save(coupon);
 		
 		return returnCoupon;
 	}
@@ -54,7 +54,7 @@ public class CouponStore {
 	
 	//쿠폰지급
 	public Coupon couponpProvide() {
-		List<Coupon> returnCoupons = couponRepository.findTop1ByCouponProvideOrderByRegDateAsc("N");
+		List<Coupon> returnCoupons = couponRepository.findTop1ByCouponProvideOrderByStartDateAsc("N");
 		
 		if(returnCoupons.isEmpty()) {
 			throw new Kpexception("지급가능한 쿠폰이 없습니다.");
@@ -66,7 +66,7 @@ public class CouponStore {
 	
 	//지급여부 확인
 	public List<Coupon> provideYnCheckCoupon(String provideYn){
-		List<Coupon> returnCoupons = couponRepository.findByCouponProvideOrderByRegDateAsc(provideYn);
+		List<Coupon> returnCoupons = couponRepository.findByCouponProvideOrderByStartDateAsc(provideYn);
 		
 		return returnCoupons;
 	}
