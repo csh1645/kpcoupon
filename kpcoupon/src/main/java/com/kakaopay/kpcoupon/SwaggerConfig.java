@@ -18,8 +18,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
-                .title("Demo")
-                .description("API EXAMPLE")
+                .title("Rest API 기반 쿠폰시스템")
+                .description("API TEST")
                 .build();
     }
 

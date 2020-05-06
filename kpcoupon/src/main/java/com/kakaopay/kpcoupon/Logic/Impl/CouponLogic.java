@@ -1,6 +1,5 @@
 package com.kakaopay.kpcoupon.Logic.Impl;
 
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
