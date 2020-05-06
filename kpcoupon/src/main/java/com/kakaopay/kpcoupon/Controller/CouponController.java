@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.kakaopay.kpcoupon.Base.Jwt.JwtUtil;
 import com.kakaopay.kpcoupon.Entity.Coupon;
 import com.kakaopay.kpcoupon.Entity.CreateCouponQty;
+import com.kakaopay.kpcoupon.Entity.UseCouponId;
 import com.kakaopay.kpcoupon.Logic.CouponService;
 
 @RestController
@@ -75,8 +76,8 @@ public class CouponController {
      */
 	@PutMapping("/useCoupon")
 	public String useCoupon(
-			@RequestBody  Coupon coupon) {
-		return couponService.useCoupon(coupon.getCouponId());
+			@RequestBody  UseCouponId couponId) {
+		return couponService.useCoupon(couponId.getCouponId());
 		
 	}
 	
@@ -88,8 +89,8 @@ public class CouponController {
      */
 	@PutMapping("/useCancleCoupon")
 	public String useCancleCoupon(
-			@RequestBody  Coupon coupon) {
-		return couponService.useCancleCoupon(coupon.getCouponId());
+			@RequestBody  UseCouponId couponId) {
+		return couponService.useCancleCoupon(couponId.getCouponId());
 		
 	}
 	

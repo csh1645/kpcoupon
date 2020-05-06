@@ -122,14 +122,14 @@ public class CouponLogic implements CouponService {
 		}
 				
 		String returnMsg;
-				
-		if(coupon.getCouponProvide().contains("N")) {
-			returnMsg = "사용불가 쿠폰(지금되지 않은 쿠폰)";
-		}else if(coupon.getCouponProvide().contains("Y") &&
-				coupon.getCouponUse().contains("N")) {
+		
+		if(coupon.getCouponProvide().equals("Y") &&
+				coupon.getCouponUse().equals("N")) {
 			coupon.setCouponUse("Y");
 			couponStore.save(coupon);
 			returnMsg = "쿠폰을 사용 하겠습니다.";
+		}else if(coupon.getCouponProvide().equals("N")) {
+			returnMsg = "사용 할 수 없는 쿠폰입니다.";
 		}else {
 			returnMsg = "이미 사용된 쿠폰입니다.";
 		}
@@ -150,14 +150,14 @@ public class CouponLogic implements CouponService {
 		
 		String returnMsg;
 		
-		if(coupon.getCouponProvide().contains("Y") &&
-				coupon.getCouponUse().contains("Y")) {
-			returnMsg = "이미 사용된 쿠폰입니다.";
-		} else if(coupon.getCouponProvide().contains("Y") &&
-				coupon.getCouponUse().contains("N")) {
-			coupon.setCouponProvide("N");
+		if(coupon.getCouponProvide().equals("Y") &&
+				coupon.getCouponUse().equals("Y")) {
+			coupon.setCouponUse("N");
 			couponStore.save(coupon);
-			returnMsg = "지급된 쿠폰을 취소하였습니다.";
+			returnMsg = "쿠폰사용을 취소하였습니다.";
+		} else if(coupon.getCouponProvide().equals("Y") &&
+				coupon.getCouponUse().equals("N")) {
+			returnMsg = "사용하지 않은 쿠폰입니다.";
 		}else {
 			returnMsg = "취소할 쿠폰이 없습니다.";
 		}

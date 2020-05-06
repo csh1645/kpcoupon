@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class CreateCouponQty {
-	private Long couponQty;
+public class UseCouponId {
+	private String couponId;
 	//private String endDate;
 
 	@Builder
-	public CreateCouponQty(Long couponQty) {
-		this.couponQty = couponQty;
+	public UseCouponId(String couponId) {
+		this.couponId = couponId;
 	}
 }
